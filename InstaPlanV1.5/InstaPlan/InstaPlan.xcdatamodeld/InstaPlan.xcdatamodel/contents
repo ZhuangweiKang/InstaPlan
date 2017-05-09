@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Assignment" representedClassName="Assignment" syncable="YES">
+        <attribute name="additional_info" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="assignment_name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="class_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="due_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="remind_time" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InstaPlanUser" inverseName="assignment" inverseEntity="InstaPlanUser" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="assignment_name"/>
+            </compoundIndex>
+        </compoundIndexes>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="assignment_name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Course" representedClassName="Course" syncable="YES">
+        <attribute name="aditional_info" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="class_color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="class_day" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="class_end_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="class_name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="class_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instructor_ta_info" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InstaPlanUser" inverseName="course" inverseEntity="InstaPlanUser" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="class_name"/>
+            </compoundIndex>
+        </compoundIndexes>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="class_name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="CustomNotes" representedClassName="CustomNotes" syncable="YES">
+        <attribute name="note_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes_content" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InstaPlanUser" inverseName="custom_notes" inverseEntity="InstaPlanUser" syncable="YES"/>
+    </entity>
+    <entity name="InstaPlanUser" representedClassName="InstaPlanUser" syncable="YES">
+        <attribute name="email_address" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="login_status" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_name" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="assignment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="user" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="course" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="user" inverseEntity="Course" syncable="YES"/>
+        <relationship name="custom_notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CustomNotes" inverseName="user" inverseEntity="CustomNotes" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="email_address"/>
+            </compoundIndex>
+        </compoundIndexes>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="email_address"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="Assignment" positionX="-56" positionY="0" width="128" height="180"/>
+        <element name="Course" positionX="-297" positionY="-99" width="128" height="165"/>
+        <element name="CustomNotes" positionX="-162" positionY="-54" width="128" height="90"/>
+        <element name="InstaPlanUser" positionX="-56" positionY="-207" width="128" height="150"/>
+    </elements>
+</model>
